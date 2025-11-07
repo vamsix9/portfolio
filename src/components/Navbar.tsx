@@ -3,140 +3,92 @@ import {
   AppBar,
   Toolbar,
   Typography,
+  IconButton,
   Button,
   Box,
-  IconButton,
   Drawer,
   List,
-  ListItem,
   ListItemButton,
   ListItemText,
+  Switch,
+  Divider,
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
-import ThemeToggle from './ThemeToggle';
+import { useColorMode } from '../theme/ThemeProvider';
 
-const sections = [
-  { href: '#about', label: 'About' },
-  { href: '#experience', label: 'Experience' },
-  { href: '#projects', label: 'Projects' },
-  { href: '#skills', label: 'Skills' },
-  { href: '#contact', label: 'Contact' },
+const NAV_ITEMS = [
+  { id: 'home', label: 'Home' },
+  { id: 'experience', label: 'Experience' },
+  { id: 'education', label: 'Education' },
+  { id: 'projects', label: 'Projects' },
+  { id: 'skills', label: 'Skills' },
+  { id: 'contact', label: 'Contact' },
 ];
 
-export default function Navbar() {
+export default function Navbar(): JSX.Element {
   const [open, setOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState('about');
+  const { mode, toggleColorMode } = useColorMode();
 
-  const handleDrawerToggle = () => {
-    setOpen(!open);
-  };
-
-  const handleNavClick = (href: string) => {
+  const handleNav = (id: string) => {
     setOpen(false);
-    setActiveSection(href.replace('#', ''));
+    const el = document.getElementById(id);
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
   };
 
   return (
-    <>
-      <AppBar 
-        position="fixed" 
-        sx={{ 
-          backgroundColor: 'background.paper',
-          color: 'text.primary',
-          boxShadow: 'none',
-          borderBottom: 1,
-          borderColor: 'divider',
-        }}
-      >
-        <Toolbar sx={{ maxWidth: '1200px', mx: 'auto', width: '100%', px: 3 }}>
-          <Typography
-            variant="h6"
-            component="a"
-            href="#about"
-            sx={{
-              fontWeight: 600,
-              textDecoration: 'none',
-              color: 'inherit',
-            }}
+    <AppBar position="sticky" color="default" elevation={1}>
+      <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
+        <Box sx={{ display: 'flex', alignItems: 'center' }}>
+          <IconButton
+            edge="start"
+            color="inherit"
+            aria-label="open navigation"
+            onClick={() => setOpen(true)}
+            sx={{ mr: 1, display: { md: 'none' } }}
           >
+            <MenuIcon />
+          </IconButton>
+
+          <Typography variant="h6" component="div" sx={{ fontWeight: 700 }}>
             Vamsi
           </Typography>
-          
-          <Box sx={{ flexGrow: 1 }} />
-          
-          <Box sx={{ display: { xs: 'none', sm: 'flex' }, alignItems: 'center', gap: 1 }}>
-            {sections.map((section) => (
-              <Button
-                key={section.href}
-                href={section.href}
-                onClick={() => handleNavClick(section.href)}
-                sx={{
-                  color: activeSection === section.href.replace('#', '') ? 'background.paper' : 'text.primary',
-                  backgroundColor: activeSection === section.href.replace('#', '') ? 'text.primary' : 'transparent',
-                  textTransform: 'none',
-                  px: 2,
-                  py: 1,
-                  borderRadius: 1,
-                  '&:hover': {
-                    backgroundColor: activeSection === section.href.replace('#', '') ? 'text.primary' : 'action.hover',
-                  },
-                }}
-              >
-                {section.label}
-              </Button>
-            ))}
-            <ThemeToggle />
-          </Box>
-          
-          <Box sx={{ display: { xs: 'flex', sm: 'none' }, alignItems: 'center', gap: 1 }}>
-            <ThemeToggle />
-            <IconButton
-              color="inherit"
-              aria-label="toggle menu"
-              onClick={handleDrawerToggle}
-              sx={{ border: 1, borderColor: 'divider' }}
-            >
-              <MenuIcon />
-            </IconButton>
-          </Box>
-        </Toolbar>
-      </AppBar>
+        </Box>
 
-      <Drawer
-        variant="temporary"
-        anchor="top"
-        open={open}
-        onClose={handleDrawerToggle}
-        ModalProps={{
-          keepMounted: true,
-        }}
-        sx={{
-          display: { xs: 'block', sm: 'none' },
-          '& .MuiDrawer-paper': {
-            boxSizing: 'border-box',
-            width: '100%',
-            mt: 7,
-          },
-        }}
-      >
-        <List>
-          {sections.map((section) => (
-            <ListItem key={section.href} disablePadding>
-              <ListItemButton
-                href={section.href}
-                onClick={() => handleNavClick(section.href)}
-                sx={{
-                  '&:hover': {
-                    backgroundColor: 'action.hover',
-                  },
-                }}
-              >
-                <ListItemText primary={section.label} />
-              </ListItemButton>
-            </ListItem>
+        <Box sx={{ display: { xs: 'none', md: 'flex' }, gap: 1 }}>
+          {NAV_ITEMS.map((n) => (
+            <Button key={n.id} color="inherit" onClick={() => handleNav(n.id)}>
+              {n.label}
+            </Button>
           ))}
-        </List>
+        </Box>
+
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+          <Switch
+            edge="end"
+            aria-label="toggle theme"
+            checked={mode === 'dark'}
+            onChange={toggleColorMode}
+            color="primary"
+          />
+        </Box>
+      </Toolbar>
+
+      <Drawer anchor="left" open={open} onClose={() => setOpen(false)}>
+        <Box sx={{ width: 260 }} role="presentation">
+          <List>
+            {NAV_ITEMS.map((n) => (
+              <ListItemButton key={n.id} onClick={() => handleNav(n.id)}>
+                <ListItemText primary={n.label} />
+              </ListItemButton>
+            ))}
+          </List>
+          <Divider />
+          <Box sx={{ p: 2 }}>
+            <Typography variant="body2" sx={{ mb: 1 }}>Theme</Typography>
+            <Switch checked={mode === 'dark'} onChange={toggleColorMode} inputProps={{ 'aria-label': 'toggle theme' }} />
+          </Box>
+        </Box>
       </Drawer>
-    </>
+    </AppBar>
   );
 }
