@@ -1,0 +1,119 @@
+import React from 'react';
+import {
+	Box,
+	Typography,
+	Button,
+	IconButton,
+	Stack,
+	Link as MuiLink,
+	Tooltip,
+} from '@mui/material';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import GitHubIcon from '@mui/icons-material/GitHub';
+import EmailIcon from '@mui/icons-material/Email';
+import TwitterIcon from '@mui/icons-material/Twitter';
+
+type Social = {
+	name: string;
+	href: string;
+	icon: React.ReactNode;
+};
+
+const SOCIALS: Social[] = [
+	{
+		name: 'LinkedIn',
+		href: 'https://www.linkedin.com/in/ted',
+		icon: <LinkedInIcon />,
+	},
+	{
+		// Using the Twitter icon to represent X (formerly Twitter)
+		name: 'X',
+		href: 'https://x.com/ted',
+		icon: <TwitterIcon />, 
+	},
+	{
+		name: 'GitHub',
+		href: 'https://github.com/ted',
+		icon: <GitHubIcon />, 
+	},
+	{
+		name: 'Email',
+		href: 'mailto:ted@example.com',
+		icon: <EmailIcon />, 
+	},
+];
+
+export default function Home(): JSX.Element {
+	return (
+		<Box
+			component="section"
+			aria-label="home"
+			sx={{
+				minHeight: '60vh',
+				display: 'flex',
+				alignItems: 'center',
+				justifyContent: 'center',
+				px: 3,
+				py: 6,
+			}}
+		>
+			<Box sx={{ maxWidth: 900, width: '100%' }}>
+				<Typography variant="h3" component="h1" sx={{ fontWeight: 700 }}>
+					hi ted here. 👋
+				</Typography>
+
+				<Typography variant="h6" color="text.secondary" sx={{ mt: 1 }}>
+					28 yo software engineer from Singapore 🇸🇬
+				</Typography>
+
+				<Typography variant="body1" sx={{ mt: 3, lineHeight: 1.6 }}>
+					Backend by trade, full-stack by passion. I build and self-host the lot.
+				</Typography>
+
+				<Stack direction={{ xs: 'column', sm: 'row' }} spacing={2} sx={{ mt: 4 }}>
+					<MuiLink href="#chat" underline="none">
+						<Button variant="contained" color="primary">For Q&A, start a chat with Ted Support</Button>
+					</MuiLink>
+
+					<MuiLink href="#lead" underline="none">
+						<Button variant="outlined">For escalations, find my Ted Lead</Button>
+					</MuiLink>
+				</Stack>
+
+				<Stack direction="row" spacing={1} alignItems="center" sx={{ mt: 3 }}>
+					<Typography variant="body2" color="text.secondary" sx={{ mr: 1 }}>
+						Connect:
+					</Typography>
+
+					{SOCIALS.map((s) => (
+						<Tooltip key={s.name} title={s.name} arrow>
+							<IconButton
+								aria-label={s.name}
+								component="a"
+								href={s.href}
+								target="_blank"
+								rel="noopener noreferrer"
+								color="primary"
+							>
+								{s.icon}
+							</IconButton>
+						</Tooltip>
+					))}
+
+					<Box sx={{ flex: '1 1 auto' }} />
+
+					<Button
+						variant="contained"
+						color="secondary"
+						component="a"
+						href="/resume.pdf"
+						download
+						sx={{ ml: 1 }}
+					>
+						Download Resume
+					</Button>
+				</Stack>
+			</Box>
+		</Box>
+	);
+}
