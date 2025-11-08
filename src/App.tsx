@@ -1,7 +1,6 @@
 import Home from './components/Home';
-import Experience from './components/Experience';
+import ExperienceTimeline from './components/Experience';
 import Education from './components/Education';
-import Projects from './components/Projects';
 import Skills from './components/Skills';
 import Contact from './components/Contact';
 import Navbar from './components/Navbar';
@@ -16,12 +15,11 @@ function App() {
         component="main"
         maxWidth={false}
         disableGutters
-        sx={{ px: { xs: '10%', md: '20%' } }}
+        sx={{ px: { xs: '5%', md: '20%' } }}
       >
         <Home />
-        <Experience />
+        <ExperienceTimeline />
         <Education />
-        <Projects />
         <Skills />
         <Contact />
       </Container>
