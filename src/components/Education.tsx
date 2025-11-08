@@ -1,18 +1,10 @@
 import React from "react";
 import { Box, Typography, Card, CardContent } from "@mui/material";
-import sws from "../assets/logos/sws.png";
-import yellowowl from "../assets/logos/yellowl-owl.png";
 import masai from "../assets/logos/masai.png";
 import seagi from '../assets/logos/seagi.png';
+import { EducationType } from "../types/types";
 
-interface Experience {
-  date: string;
-  company: string;
-  role: string;
-  logo: string;
-}
-
-const experiences: Experience[] = [
+const EducationList: EducationType[] = [
   {
     date: "Jan 2023 - Dec 2023",
     company: "Masai School",
@@ -67,7 +59,7 @@ const Education: React.FC = () => {
       />
 
       <Box sx={{ display: "flex", flexDirection: "column", gap: 7 }}>
-        {experiences.map((exp, index) => (
+        {EducationList.map((edu, index) => (
           <Box key={index} sx={{ position: "relative", minHeight: 80 }}>
             {/* Logo centered directly over the line */}
             <Box
@@ -89,8 +81,8 @@ const Education: React.FC = () => {
             >
               <Box
                 component="img"
-                src={exp.logo}
-                alt={exp.company}
+                src={edu.logo}
+                alt={edu.company}
                 sx={{
                   width: 40,
                   height: 40,
@@ -120,7 +112,7 @@ const Education: React.FC = () => {
                     fontFamily: "Inter, sans-serif",
                   }}
                 >
-                  {exp.date}
+                  {edu.date}
                 </Typography>
 
                 <Typography
@@ -131,7 +123,7 @@ const Education: React.FC = () => {
                     fontFamily: "Inter, sans-serif",
                   }}
                 >
-                  {exp.company}
+                  {edu.company}
                 </Typography>
 
                 <Typography
@@ -142,7 +134,7 @@ const Education: React.FC = () => {
                     mb: 1,
                   }}
                 >
-                  {exp.role}
+                  {edu.role}
                 </Typography>
               </CardContent>
             </Card>

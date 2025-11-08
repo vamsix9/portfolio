@@ -1,5 +1,5 @@
 import Home from './components/Home';
-import ExperienceTimeline from './components/Experience';
+import Experience from './components/Experience';
 import Education from './components/Education';
 import Skills from './components/Skills';
 import Contact from './components/Contact';
@@ -18,7 +18,7 @@ function App() {
         sx={{ px: { xs: '5%', md: '20%' } }}
       >
         <Home />
-        <ExperienceTimeline />
+        <Experience />
         <Education />
         <Skills />
         <Contact />
