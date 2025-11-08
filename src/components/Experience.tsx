@@ -1,8 +1,10 @@
 import React from "react";
-import { Box, Typography, Card, CardContent } from "@mui/material";
+import { Box, Typography, Card, CardContent, useTheme } from "@mui/material";
 import sws from "../assets/logos/sws.png";
 import yellowowl from "../assets/logos/yellowl-owl.png";
-import epixsmedia from '../assets/logos/epixs-media.png'
+import epixsmedia from '../assets/logos/epixs-media.png';
+import masai from "../assets/logos/masai.png";
+import seagi from '../assets/logos/seagi.png';
 import { ExperienceType } from "../types/types";
 
 const experiences: ExperienceType[] = [
@@ -23,36 +25,63 @@ const experiences: ExperienceType[] = [
   },
   {
     date: "Jan 2023 - Dec 2023",
+    company: "Masai School",
+    role: "Full-Stack web development - Student",
+    logo: masai,
+  },
+  {
+    date: "Jan 2021 - Feb 2023",
     company: "EPIXS Media",
     role: "Social Media Executive & Content Writer",
     description:
       "Web Development; Functional testing some company's apps (Lota Digital, Caldas da Rainha - City Guide).",
     logo: epixsmedia,
   },
+  {
+    date: "2014 - 2018",
+    company: "Siddartha Educational Academy Group of Institutions",
+    role: "B.Tech in Mechanical Engineering",
+    logo: seagi,
+  },
 ];
 
 const Experience: React.FC = () => {
+  const theme = useTheme();
   return (
-    <>
+    <Box sx={{
+      p: 1,
+    }}>
       {/* Section heading (outside the bordered container) */}
-      <Box sx={{ mb: 2 }}>
+      <Box sx={{ mb: 2 }}
+        component="section"
+        id="career"
+        aria-label="career">
+        <Typography
+          variant="subtitle2"
+          sx={{
+            color: "white",
+            fontWeight: 100,
+            textTransform: "none"
+          }}
+        >
+          so far
+        </Typography>
         <Typography
           variant="h5"
           sx={{
             color: "white",
             fontWeight: 700,
-            textTransform: "none",
-            fontFamily: "Inter, sans-serif",
+            textTransform: "none"
           }}
         >
-          Experiences
+          Career
         </Typography>
       </Box>
       <Box
         sx={{
           position: "relative",
           borderRadius: "12px",
-          border: "1px solid #1e2729",
+          border: `1px solid ${theme.palette.primary.dark}`,
           p: 4,
         }}
       >
@@ -60,25 +89,25 @@ const Experience: React.FC = () => {
         <Box
           sx={{
             position: "absolute",
-            left: "60px", // main timeline axis
+            left: "35px", // main timeline axis
             top: 0,
             bottom: 0,
             width: "2px",
-            backgroundColor: "#1e2729",
+            backgroundColor: theme.palette.primary.dark,
             borderRadius: 1,
             zIndex: 0,
           }}
         />
 
-        <Box sx={{ display: "flex", flexDirection: "column", gap: 7 }}>
+        <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
           {experiences.map((exp, index) => (
-            <Box key={index} sx={{ position: "relative", minHeight: 80 }}>
+            <Box key={index} sx={{ position: "relative" }}>
               {/* Logo centered directly over the line */}
               <Box
                 sx={{
                   position: "absolute",
                   top: 0,
-                  left: "30px",
+                  left: "5px",
                   transform: "translate(-50%, 0)", // centers logo over line
                   width: 40,
                   height: 40,
@@ -111,7 +140,7 @@ const Experience: React.FC = () => {
                   backgroundColor: "transparent",
                   boxShadow: "none",
                   color: "white",
-                  ml: "70px",
+                  ml: "40px",
                 }}
               >
                 <CardContent sx={{ p: 0 }}>
@@ -120,8 +149,7 @@ const Experience: React.FC = () => {
                     sx={{
                       color: "#b8b8b8",
                       fontSize: "0.85rem",
-                      mb: 0.5,
-                      fontFamily: "Inter, sans-serif",
+                      mb: 0.5
                     }}
                   >
                     {exp.date}
@@ -130,9 +158,7 @@ const Experience: React.FC = () => {
                   <Typography
                     variant="h6"
                     sx={{
-                      fontWeight: 600,
-                      mb: 0.5,
-                      fontFamily: "Inter, sans-serif",
+                      mb: 0.5
                     }}
                   >
                     {exp.company}
@@ -142,8 +168,7 @@ const Experience: React.FC = () => {
                     variant="subtitle2"
                     sx={{
                       color: "#9ca3af",
-                      fontFamily: "Inter, sans-serif",
-                      mb: 1,
+                      mb: 1
                     }}
                   >
                     {exp.role}
@@ -153,8 +178,7 @@ const Experience: React.FC = () => {
                     variant="body2"
                     sx={{
                       color: "#d1d5db",
-                      lineHeight: 1.6,
-                      fontFamily: "Inter, sans-serif",
+                      lineHeight: 1.6
                     }}
                   >
                     {exp.description}
@@ -165,7 +189,7 @@ const Experience: React.FC = () => {
           ))}
         </Box>
       </Box>
-    </>
+    </Box>
   );
 };
 

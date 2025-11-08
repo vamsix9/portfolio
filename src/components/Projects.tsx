@@ -32,8 +32,8 @@ const PROJECTS: Project[] = [
 
 export default function Projects(): JSX.Element {
   return (
-    <Box component="section" aria-label="projects" sx={{ py: 6 }}>
-      <Typography variant="h4" component="h2" sx={{ mb: 3 }}>
+    <Box component="section" id="projects" aria-label="projects" sx={{ p: 4 }}>
+      <Typography variant="h4" component="h2" sx={{ mb: 2 }}>
         Projects
       </Typography>
 

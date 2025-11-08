@@ -26,6 +26,6 @@ export type ExperienceType = {
     date: string;
     company: string;
     role: string;
-    description: string;
+    description?: string;
     logo: string;
 }

@@ -18,8 +18,8 @@ export default function Contact(): JSX.Element {
   };
 
   return (
-    <Box component="section" aria-label="contact" sx={{ py: 6 }}>
-      <Typography variant="h4" component="h2" sx={{ mb: 3 }}>
+    <Box component="section" aria-label="contact" sx={{ p: 1 }}>
+      <Typography variant="h4" component="h2" sx={{ mb: 2 }}>
         Contact
       </Typography>
 
