@@ -1,183 +1,172 @@
-import {
-  Box,
-  Card,
-  CardContent,
-  Grid,
-  Avatar,
-  Typography,
-  Stack,
-  Chip,
-  Divider,
-  useTheme,
-} from '@mui/material';
+import React from "react";
+import { Box, Typography, Card, CardContent } from "@mui/material";
+import sws from "../assets/logos/sws.png";
+import yellowowl from "../assets/logos/yellowl-owl.png";
+import epixsmedia from '../assets/logos/epixs-media.png'
+import { ExperienceType } from "../types/types";
 
-type Tech = {
-  name: string;
-  image?: string; // path to image or public URL
-};
-
-type ExperienceItem = {
-  id: string;
-  company: {
-    name: string;
-    website?: string;
-    linkedin?: string;
-    logo?: string; // path to logo
-  };
-  designation: string;
-  duration: string;
-  location?: string;
-  technologies: Tech[];
-  summary: string; // rich text or markdown could be supported later
-};
-
-const SAMPLE_EXPERIENCES: ExperienceItem[] = [
+const experiences: ExperienceType[] = [
   {
-    id: 'exp1',
-    company: {
-      name: 'Acme Systems',
-      website: 'https://acme.example',
-      linkedin: 'https://www.linkedin.com/company/acme-systems',
-      logo: '/logos/acme.png',
-    },
-    designation: 'Senior Software Engineer',
-    duration: 'Jan 2022 - Present',
-    location: 'Singapore',
-    technologies: [
-      { name: 'Node.js', image: '/tech/nodejs.png' },
-      { name: 'TypeScript', image: '/tech/typescript.png' },
-      { name: 'Postgres', image: '/tech/postgres.png' },
-      { name: 'Docker', image: '/tech/docker.png' },
-    ],
-    summary:
-      'Built scalable backend services, owned CI/CD pipelines, and migrated legacy services to a containerised platform. Worked closely with product to deliver features end-to-end.',
+    date: "Jan 2025 - Aug 2025",
+    company: "Softworth Solutions",
+    role: "Full-Stack Developer",
+    description: "Web Design; Web Development; Wordpress + Elementor.",
+    logo: sws,
   },
   {
-    id: 'exp2',
-    company: {
-      name: 'Beta Labs',
-      website: 'https://beta.example',
-      linkedin: 'https://www.linkedin.com/company/beta-labs',
-      logo: '/logos/beta.png',
-    },
-    designation: 'Software Engineer',
-    duration: 'Jun 2019 - Dec 2021',
-    location: 'Remote',
-    technologies: [
-      { name: 'React', image: '/tech/react.png' },
-      { name: 'GraphQL', image: '/tech/graphql.png' },
-      { name: 'Redis', image: '/tech/redis.png' },
-    ],
-    summary:
-      'Implemented customer-facing features, improved frontend performance, and led several cross-team integrations.',
+    date: "Aug 2024 - Jan 2025",
+    company: "YellowOwl",
+    role: "Full-Stack Developer",
+    description:
+      "Mobile Development ( Parque D.Carlos I App - Course Final Project [Grade:20/20] ); Web Development; Functional testing some company's apps (Lota Digital, Caldas da Rainha - City Guide).",
+    logo: yellowowl,
+  },
+  {
+    date: "Jan 2023 - Dec 2023",
+    company: "EPIXS Media",
+    role: "Social Media Executive & Content Writer",
+    description:
+      "Web Development; Functional testing some company's apps (Lota Digital, Caldas da Rainha - City Guide).",
+    logo: epixsmedia,
   },
 ];
 
-// Timeline-style company block: left column contains avatar over a vertical connector,
-// right column contains duration, company name, role and summary.
-function TimelineItem({ item, isFirst, isLast }: { item: ExperienceItem; isFirst: boolean; isLast: boolean }) {
-  const theme = useTheme();
+const Experience: React.FC = () => {
   return (
-    <Grid container spacing={2} alignItems="flex-start">
-      {/* Left: avatar + connector */}
-      <Grid item sx={{ width: 96, display: 'flex', justifyContent: 'center' }}>
-        <Box sx={{ position: 'relative', width: 24 }}>
-          {/* vertical line spanning the card except optional caps */}
-          <Box
-            aria-hidden
-            sx={{
-              position: 'absolute',
-              left: '50%',
-              top: isFirst ? '50%' : 0,
-              bottom: isLast ? '50%' : 0,
-              transform: 'translateX(-50%)',
-              width: 2,
-              bgcolor: 'divider',
-            }}
-          />
-
-          <Avatar
-            src={item.company.logo}
-            alt={item.company.name}
-            sx={{
-              width: 64,
-              height: 64,
-              border: `3px solid ${theme.palette.background.paper}`,
-              boxShadow: 1,
-              position: 'relative',
-              left: -20,
-            }}
-          />
-        </Box>
-      </Grid>
-
-      {/* Right: content */}
-      <Grid item xs>
-        <Box>
-          <Typography variant="body2" sx={{ fontWeight: 600 }} color="text.secondary">
-            {item.duration}
-          </Typography>
-
-          <Typography variant="h6" component="div" sx={{ fontWeight: 700, mt: 0.5 }}>
-            {item.company.name}
-          </Typography>
-
-          <Typography variant="subtitle2" color="text.secondary">
-            {item.designation}
-          </Typography>
-
-          <Typography variant="body2" sx={{ mt: 1 }}>
-            {item.summary}
-          </Typography>
-        </Box>
-      </Grid>
-    </Grid>
-  );
-}
-
-function TechList({ techs }: { techs: Tech[] }) {
-  return (
-    <Stack direction="row" spacing={1} flexWrap="wrap" sx={{ mt: 2 }}>
-      {techs.map((t) => (
-        <Chip
-          key={t.name}
-          icon={
-            t.image ? (
-              <Avatar src={t.image} alt={t.name} sx={{ width: 20, height: 20 }} />
-            ) : undefined
-          }
-          label={t.name}
-          variant="outlined"
-          sx={{ mr: 1, mb: 1 }}
+    <>
+      {/* Section heading (outside the bordered container) */}
+      <Box sx={{ mb: 2 }}>
+        <Typography
+          variant="h5"
+          sx={{
+            color: "white",
+            fontWeight: 700,
+            textTransform: "none",
+            fontFamily: "Inter, sans-serif",
+          }}
+        >
+          Experiences
+        </Typography>
+      </Box>
+      <Box
+        sx={{
+          position: "relative",
+          borderRadius: "12px",
+          border: "1px solid #1e2729",
+          p: 4,
+        }}
+      >
+        {/* Vertical line */}
+        <Box
+          sx={{
+            position: "absolute",
+            left: "60px", // main timeline axis
+            top: 0,
+            bottom: 0,
+            width: "2px",
+            backgroundColor: "#1e2729",
+            borderRadius: 1,
+            zIndex: 0,
+          }}
         />
-      ))}
-    </Stack>
+
+        <Box sx={{ display: "flex", flexDirection: "column", gap: 7 }}>
+          {experiences.map((exp, index) => (
+            <Box key={index} sx={{ position: "relative", minHeight: 80 }}>
+              {/* Logo centered directly over the line */}
+              <Box
+                sx={{
+                  position: "absolute",
+                  top: 0,
+                  left: "30px",
+                  transform: "translate(-50%, 0)", // centers logo over line
+                  width: 40,
+                  height: 40,
+                  borderRadius: "50%",
+                  boxShadow: "0 0 0 2px #1e2729",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  overflow: "hidden",
+                  zIndex: 2,
+                }}
+              >
+                <Box
+                  component="img"
+                  src={exp.logo}
+                  alt={exp.company}
+                  sx={{
+                    width: 40,
+                    height: 40,
+                    borderRadius: "50%",
+                    objectFit: "fill",
+                  }}
+                />
+              </Box>
+
+              {/* Text card aligned to the right of the line */}
+              <Card
+                sx={{
+                  backgroundImage: "none",
+                  backgroundColor: "transparent",
+                  boxShadow: "none",
+                  color: "white",
+                  ml: "70px",
+                }}
+              >
+                <CardContent sx={{ p: 0 }}>
+                  <Typography
+                    variant="body2"
+                    sx={{
+                      color: "#b8b8b8",
+                      fontSize: "0.85rem",
+                      mb: 0.5,
+                      fontFamily: "Inter, sans-serif",
+                    }}
+                  >
+                    {exp.date}
+                  </Typography>
+
+                  <Typography
+                    variant="h6"
+                    sx={{
+                      fontWeight: 600,
+                      mb: 0.5,
+                      fontFamily: "Inter, sans-serif",
+                    }}
+                  >
+                    {exp.company}
+                  </Typography>
+
+                  <Typography
+                    variant="subtitle2"
+                    sx={{
+                      color: "#9ca3af",
+                      fontFamily: "Inter, sans-serif",
+                      mb: 1,
+                    }}
+                  >
+                    {exp.role}
+                  </Typography>
+
+                  <Typography
+                    variant="body2"
+                    sx={{
+                      color: "#d1d5db",
+                      lineHeight: 1.6,
+                      fontFamily: "Inter, sans-serif",
+                    }}
+                  >
+                    {exp.description}
+                  </Typography>
+                </CardContent>
+              </Card>
+            </Box>
+          ))}
+        </Box>
+      </Box>
+    </>
   );
-}
+};
 
-// WorkSummary was inlined into TimelineItem; helper removed.
-
-export default function Experience(): JSX.Element {
-  return (
-    <Box component="section" aria-label="experience" sx={{ py: 6 }}>
-      <Typography variant="h4" component="h2" sx={{ mb: 3 }}>
-        Experience
-      </Typography>
-
-      <Stack spacing={3}>
-        {SAMPLE_EXPERIENCES.map((item, idx) => (
-          <Card key={item.id} variant="outlined">
-            <CardContent>
-              <TimelineItem item={item} isFirst={idx === 0} isLast={idx === SAMPLE_EXPERIENCES.length - 1} />
-
-              <Divider sx={{ my: 2 }} />
-
-              <Typography variant="subtitle2">Technologies & Tools</Typography>
-              <TechList techs={item.technologies} />
-            </CardContent>
-          </Card>
-        ))}
-      </Stack>
-    </Box>
-  );
-}
+export default Experience;

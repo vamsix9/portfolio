@@ -1,44 +1,38 @@
-import React from 'react';
+// import React from 'react';
 import {
 	Box,
 	Typography,
-	Button,
+	// Button,
 	IconButton,
 	Stack,
-	Link as MuiLink,
+	// Link as MuiLink,
 	Tooltip,
 } from '@mui/material';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import EmailIcon from '@mui/icons-material/Email';
 import TwitterIcon from '@mui/icons-material/Twitter';
-
-type Social = {
-	name: string;
-	href: string;
-	icon: React.ReactNode;
-};
+import { Social } from '../types/types';
 
 const SOCIALS: Social[] = [
 	{
 		name: 'LinkedIn',
-		href: 'https://www.linkedin.com/in/ted',
+		href: 'https://www.linkedin.com/in/vamsi-brahmanapalli',
 		icon: <LinkedInIcon />,
 	},
 	{
-		// Using the Twitter icon to represent X (formerly Twitter)
 		name: 'X',
-		href: 'https://x.com/ted',
+		href: 'https://x.com/vamsi_brmhnplli',
 		icon: <TwitterIcon />, 
 	},
 	{
 		name: 'GitHub',
-		href: 'https://github.com/ted',
+		href: 'https://github.com/vamsix9',
 		icon: <GitHubIcon />, 
 	},
 	{
 		name: 'Email',
-		href: 'mailto:ted@example.com',
+		href: 'mailto:bramhanapalli.vamsi@gmail.com',
 		icon: <EmailIcon />, 
 	},
 ];
@@ -59,18 +53,18 @@ export default function Home(): JSX.Element {
 		>
 			<Box sx={{ maxWidth: 900, width: '100%' }}>
 				<Typography variant="h3" component="h1" sx={{ fontWeight: 700 }}>
-					hi ted here. 👋
+					hi, vamsi here. 👋
 				</Typography>
 
 				<Typography variant="h6" color="text.secondary" sx={{ mt: 1 }}>
-					28 yo software engineer from Singapore 🇸🇬
+					software engineer from India 🇮🇳
 				</Typography>
 
 				<Typography variant="body1" sx={{ mt: 3, lineHeight: 1.6 }}>
 					Backend by trade, full-stack by passion. I build and self-host the lot.
 				</Typography>
 
-				<Stack direction={{ xs: 'column', sm: 'row' }} spacing={2} sx={{ mt: 4 }}>
+				{/* <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2} sx={{ mt: 4 }}>
 					<MuiLink href="#chat" underline="none">
 						<Button variant="contained" color="primary">For Q&A, start a chat with Ted Support</Button>
 					</MuiLink>
@@ -78,7 +72,7 @@ export default function Home(): JSX.Element {
 					<MuiLink href="#lead" underline="none">
 						<Button variant="outlined">For escalations, find my Ted Lead</Button>
 					</MuiLink>
-				</Stack>
+				</Stack> */}
 
 				<Stack direction="row" spacing={1} alignItems="center" sx={{ mt: 3 }}>
 					<Typography variant="body2" color="text.secondary" sx={{ mr: 1 }}>
@@ -102,7 +96,7 @@ export default function Home(): JSX.Element {
 
 					<Box sx={{ flex: '1 1 auto' }} />
 
-					<Button
+					{/* <Button
 						variant="contained"
 						color="secondary"
 						component="a"
@@ -111,7 +105,7 @@ export default function Home(): JSX.Element {
 						sx={{ ml: 1 }}
 					>
 						Download Resume
-					</Button>
+					</Button> */}
 				</Stack>
 			</Box>
 		</Box>
