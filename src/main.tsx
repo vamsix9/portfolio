@@ -1,13 +1,15 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
+import { ThemeProvider, CssBaseline } from "@mui/material";
+import theme from "./theme";
 import App from './App.tsx'
 import './index.css'
-import { ThemeProviderWrapper } from './theme/ThemeProvider'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <ThemeProviderWrapper>
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
       <App />
-    </ThemeProviderWrapper>
+    </ThemeProvider>
   </React.StrictMode>,
 )

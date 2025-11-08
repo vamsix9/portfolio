@@ -26,7 +26,7 @@ const SKILLS: Skill[] = [
   { name: 'React', image: react },
   { name: 'Docker', image: docker },
   { name: 'Kubernetes', image: kubernetes },
-  { name: 'Postgres', image: postgres },
+  { name: 'PostgreSQL', image: postgres },
   { name: 'MongoDB', image: mongodb },
   { name: 'Redis', image: redis },
   { name: 'GraphQL', image: graphql },
@@ -41,11 +41,11 @@ const SKILLS: Skill[] = [
 
 export default function Skills(): JSX.Element {
   return (
-    <Box component="section" aria-label="skills" sx={{ py: 8, px: 2, bgcolor: "transparent" }}>
+    <Box component="section" id="skills" aria-label="skills" sx={{ p: 1, bgcolor: "transparent" }}>
       <Typography
         variant="h5"
         component="h2"
-        sx={{ mb: 4, color: "#fff", fontWeight: 500 }}
+        sx={{ mb: 2, color: "#fff" }}
       >
         Tech Stack
       </Typography>
