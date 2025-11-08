@@ -1,34 +1,74 @@
-import { Box, Typography, Stack, Chip, Avatar } from '@mui/material';
-
-type Skill = { name: string; image?: string };
+import { Box, Typography, Stack, Avatar } from '@mui/material';
+import { Skill } from '../types/types';
+import typescript from '../assets/logos/typescript-original.svg';
+import javascript from '../assets/logos/javascript-original.svg';
+import nodejs from '../assets/logos/nodejs-original-wordmark.svg';
+import react from '../assets/logos/react-original.svg';
+import docker from '../assets/logos/docker-original.svg';
+import kubernetes from '../assets/logos/kubernetes-original.svg';
+import postgres from '../assets/logos/postgresql-original.svg';
+import mongodb from '../assets/logos/mongodb-original.svg';
+import redis from '../assets/logos/redis-original.svg';
+import graphql from '../assets/logos/graphql-plain.svg';
+import git from '../assets/logos/git-original.svg';
+import github from '../assets/logos/github-original.svg';
+import mui from '../assets/logos/materialui-original.svg';
+import redux from '../assets/logos/redux-original.svg';
+import openapi from '../assets/logos/openapi-original.svg';
+import aws from '../assets/logos/amazonwebservices-original-wordmark.svg';
+import expressjs from '../assets/logos/expressjs-removebg-preview.png';
 
 const SKILLS: Skill[] = [
-  { name: 'TypeScript', image: '/tech/typescript.png' },
-  { name: 'Node.js', image: '/tech/nodejs.png' },
-  { name: 'React', image: '/tech/react.png' },
-  { name: 'Docker', image: '/tech/docker.png' },
-  { name: 'Kubernetes', image: '/tech/kubernetes.png' },
-  { name: 'Postgres', image: '/tech/postgres.png' },
-  { name: 'Redis', image: '/tech/redis.png' },
-  { name: 'GraphQL', image: '/tech/graphql.png' },
+  { name: 'TypeScript', image: typescript },
+  { name: 'JavaScript', image: javascript },
+  { name: 'Node.js', image: nodejs },
+  { name: 'Express.js', image: expressjs },
+  { name: 'React', image: react },
+  { name: 'Docker', image: docker },
+  { name: 'Kubernetes', image: kubernetes },
+  { name: 'Postgres', image: postgres },
+  { name: 'MongoDB', image: mongodb },
+  { name: 'Redis', image: redis },
+  { name: 'GraphQL', image: graphql },
+  { name: 'Git', image: git },
+  { name: 'GitHub', image: github },
+  { name: 'Material-UI', image: mui },
+  { name: 'Redux', image: redux },
+  { name: 'OpenAPI', image: openapi },
+  { name: 'AWS', image: aws },
 ];
+
 
 export default function Skills(): JSX.Element {
   return (
-    <Box component="section" aria-label="skills" sx={{ py: 6 }}>
-      <Typography variant="h4" component="h2" sx={{ mb: 3 }}>
-        Skills
+    <Box component="section" aria-label="skills" sx={{ py: 8, px: 2, bgcolor: "transparent" }}>
+      <Typography
+        variant="h5"
+        component="h2"
+        sx={{ mb: 4, color: "#fff", fontWeight: 500 }}
+      >
+        Tech Stack
       </Typography>
 
-      <Stack direction="row" flexWrap="wrap" spacing={1}>
+      <Stack direction="row" flexWrap="wrap" gap={2}>
         {SKILLS.map((s) => (
-          <Chip
+          <Box
             key={s.name}
-            label={s.name}
-            icon={s.image ? <Avatar src={s.image} alt={s.name} sx={{ width: 20, height: 20 }} /> : undefined}
-            sx={{ mr: 1, mb: 1 }}
-            variant="outlined"
-          />
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              gap: 1,
+              color: "#fff",
+            }}
+          >
+            <Avatar
+              src={s.image}
+              alt={s.name}
+              variant="square"
+              sx={{ width: 22, height: 22, bgcolor: "transparent" }}
+            />
+            <Typography variant="body2">{s.name}</Typography>
+          </Box>
         ))}
       </Stack>
     </Box>

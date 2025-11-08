@@ -1,85 +1,149 @@
-import { Box, Card, CardContent, Grid, Avatar, Typography, Stack } from '@mui/material';
+import React from "react";
+import { Box, Typography, Card, CardContent } from "@mui/material";
+import masai from "../assets/logos/masai.png";
+import seagi from '../assets/logos/seagi.png';
+import { EducationType } from "../types/types";
 
-type EducationItem = {
-  id: string;
-  institution: string;
-  logo?: string;
-  degree: string;
-  field?: string;
-  duration: string;
-  location?: string;
-  summary?: string;
-};
-
-const SAMPLE_EDUCATION: EducationItem[] = [
+const EducationList: EducationType[] = [
   {
-    id: 'edu1',
-    institution: 'National University of Singapore',
-    logo: '/logos/nus.png',
-    degree: 'B.Sc. Computer Science',
-    field: 'Software Engineering',
-    duration: '2014 — 2018',
-    location: 'Singapore',
-    summary: 'Focused on systems, distributed computing and web development. Graduated with honours.',
+    date: "Jan 2023 - Dec 2023",
+    company: "Masai School",
+    role: "Full-Stack web development - Student",
+    logo: masai,
   },
   {
-    id: 'edu2',
-    institution: 'Coursera / Various',
-    logo: '/logos/coursera.png',
-    degree: 'Professional Certificates',
-    field: 'Cloud & DevOps',
-    duration: '2019 — 2021',
-    location: 'Online',
-    summary: 'Completed several industry courses on cloud infrastructure, CI/CD and container orchestration.',
+    date: "2014 - 2018",
+    company: "Siddartha Educational Academy Group of Institutions",
+    role: "B.Tech in Mechanical Engineering",
+    logo: seagi,
   },
 ];
 
-export default function Education(): JSX.Element {
+const Education: React.FC = () => {
   return (
-    <Box component="section" aria-label="education" sx={{ py: 6 }}>
-      <Typography variant="h4" component="h2" sx={{ mb: 3 }}>
-        Education
-      </Typography>
+    <>
+      {/* Section heading (outside the bordered container) */}
+      <Box sx={{ mb: 2 }}>
+        <Typography
+          variant="h5"
+          sx={{
+            color: "white",
+            fontWeight: 700,
+            textTransform: "none",
+            fontFamily: "Inter, sans-serif",
+          }}
+        >
+          Education
+        </Typography>
+      </Box>
+      <Box
+        sx={{
+          position: "relative",
+          borderRadius: "12px",
+          border: "1px solid #1e2729",
+          p: 4,
+        }}
+      >
+        {/* Vertical line */}
+      <Box
+        sx={{
+          position: "absolute",
+          left: "60px", // main timeline axis
+          top: 0,
+          bottom: 0,
+          width: "2px",
+          backgroundColor: "#1e2729",
+          borderRadius: 1,
+          zIndex: 0,
+        }}
+      />
 
-      <Stack spacing={3}>
-        {SAMPLE_EDUCATION.map((e) => (
-          <Card key={e.id} variant="outlined">
-            <CardContent>
-              <Grid container spacing={2} alignItems="center">
-                <Grid item>
-                  <Avatar src={e.logo} alt={e.institution} sx={{ width: 56, height: 56 }} />
-                </Grid>
+      <Box sx={{ display: "flex", flexDirection: "column", gap: 7 }}>
+        {EducationList.map((edu, index) => (
+          <Box key={index} sx={{ position: "relative", minHeight: 80 }}>
+            {/* Logo centered directly over the line */}
+            <Box
+              sx={{
+                position: "absolute",
+                top: 0,
+                left: "30px",
+                transform: "translate(-50%, 0)", // centers logo over line
+                width: 40,
+                height: 40,
+                borderRadius: "50%",
+                boxShadow: "0 0 0 2px #1e2729",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                overflow: "hidden",
+                zIndex: 2,
+              }}
+            >
+              <Box
+                component="img"
+                src={edu.logo}
+                alt={edu.company}
+                sx={{
+                  width: 40,
+                  height: 40,
+                  borderRadius: "50%",
+                  objectFit: "fill",
+                }}
+              />
+            </Box>
 
-                <Grid item xs>
-                  <Typography variant="h6">{e.institution}</Typography>
-                  <Typography variant="body2" color="text.secondary">
-                    {e.degree} {e.field ? ` — ${e.field}` : ''}
-                  </Typography>
-                </Grid>
-
-                <Grid item>
-                  <Box textAlign="right">
-                    <Typography variant="body2" sx={{ fontWeight: 600 }}>
-                      {e.duration}
-                    </Typography>
-                    {e.location && (
-                      <Typography variant="caption" color="text.secondary">
-                        {e.location}
-                      </Typography>
-                    )}
-                  </Box>
-                </Grid>
-              </Grid>
-
-              {e.summary && (
-                <Typography variant="body2" sx={{ mt: 2 }}>
-                  {e.summary}
+            {/* Text card aligned to the right of the line */}
+            <Card
+              sx={{
+                backgroundImage: "none",
+                backgroundColor: "transparent",
+                boxShadow: "none",
+                color: "white",
+                ml: "70px",
+              }}
+            >
+              <CardContent sx={{ p: 0 }}>
+                <Typography
+                  variant="body2"
+                  sx={{
+                    color: "#b8b8b8",
+                    fontSize: "0.85rem",
+                    mb: 0.5,
+                    fontFamily: "Inter, sans-serif",
+                  }}
+                >
+                  {edu.date}
                 </Typography>
-              )}
-            </CardContent>
-          </Card>
+
+                <Typography
+                  variant="h6"
+                  sx={{
+                    fontWeight: 600,
+                    mb: 0.5,
+                    fontFamily: "Inter, sans-serif",
+                  }}
+                >
+                  {edu.company}
+                </Typography>
+
+                <Typography
+                  variant="subtitle2"
+                  sx={{
+                    color: "#9ca3af",
+                    fontFamily: "Inter, sans-serif",
+                    mb: 1,
+                  }}
+                >
+                  {edu.role}
+                </Typography>
+              </CardContent>
+            </Card>
+          </Box>
         ))}
-      </Stack>
+      </Box>
     </Box>
+    </>
   );
-}
+};
+
+export default Education;
