@@ -8,15 +8,9 @@ import {
   Button,
   CardActions,
 } from '@mui/material';
+import { Project } from '../types/types';
 
-type Project = {
-  id: string;
-  name: string;
-  description: string;
-  tech: string[];
-  repo?: string;
-  demo?: string;
-};
+
 
 const PROJECTS: Project[] = [
   {

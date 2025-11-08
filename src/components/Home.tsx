@@ -1,43 +1,38 @@
-import React from 'react';
+// import React from 'react';
 import {
 	Box,
 	Typography,
-	Button,
+	// Button,
 	IconButton,
 	Stack,
-	Link as MuiLink,
+	// Link as MuiLink,
 	Tooltip,
 } from '@mui/material';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import EmailIcon from '@mui/icons-material/Email';
 import TwitterIcon from '@mui/icons-material/Twitter';
-
-type Social = {
-	name: string;
-	href: string;
-	icon: React.ReactNode;
-};
+import { Social } from '../types/types';
 
 const SOCIALS: Social[] = [
 	{
 		name: 'LinkedIn',
-		href: 'https://www.linkedin.com/in/ted',
+		href: 'https://www.linkedin.com/in/vamsi-brahmanapalli',
 		icon: <LinkedInIcon />,
 	},
 	{
 		name: 'X',
-		href: 'https://x.com/ted',
+		href: 'https://x.com/vamsi_brmhnplli',
 		icon: <TwitterIcon />, 
 	},
 	{
 		name: 'GitHub',
-		href: 'https://github.com/ted',
+		href: 'https://github.com/vamsix9',
 		icon: <GitHubIcon />, 
 	},
 	{
 		name: 'Email',
-		href: 'mailto:ted@example.com',
+		href: 'mailto:bramhanapalli.vamsi@gmail.com',
 		icon: <EmailIcon />, 
 	},
 ];
